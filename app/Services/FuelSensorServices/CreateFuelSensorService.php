@@ -12,7 +12,7 @@ class CreateFuelSensorService
     {
     }
 
-    public function createFuelSensor(FuelSensorDTO $fuelSensorDTO): FuelSensor
+    public function createFuelSensor(FuelSensorDTO $fuelSensorDTO)
     {
         return $this->repository->createFuelSensor($fuelSensorDTO);
     }

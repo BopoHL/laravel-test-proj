@@ -23,7 +23,7 @@ class FuelSensorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'fuelAmount' => 'required|integer|min:0|max:50',
+            'fuel_amount' => 'required|integer|min:0|max:100',
             'vehicle_id' => 'required|exists:vehicles,id'
         ];
     }
