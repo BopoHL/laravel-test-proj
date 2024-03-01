@@ -8,4 +8,5 @@ return [
     'vehicle_not_found' => 'Транспорт с таким id не найден',
     'something_went_wrong' => 'Что-то пошло не так =(',
     'delete_successful' => 'Удаление успешно',
+    'happy_birthday' => 'С Днем Рождения!!!',
 ];
