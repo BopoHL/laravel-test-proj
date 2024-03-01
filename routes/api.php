@@ -45,7 +45,7 @@ Route::get('/vehicles', [VehicleController::class, 'index']);
 Route::get('/vehicles/{vehicle_id}', [VehicleController::class, 'show']);
 Route::delete('/vehicles/{vehicle_id}', [VehicleController::class, 'destroy']);
 Route::post('/vehicles', [VehicleController::class, 'store']);
-Route::match(['put', 'patch'], '/vehicles', [VehicleController::class, 'update']);
+Route::match(['put', 'patch'], '/vehicles/{vehicle_id}', [VehicleController::class, 'update']);
 
 Route::get('/organizations/{organization_id}/vehicles', [VehicleController::class, 'getOrganizationVehicles']);
 Route::get('/organizations/{organization_id}/vehicles/{vehicle_id}', [VehicleController::class, 'getOrganizationVehicle']);

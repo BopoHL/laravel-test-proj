@@ -23,7 +23,7 @@ class FuelSensorDTO
 
     public static function fromArray(array $data): static
     {
-        return new static(fuelAmount: $data['fuelAmount'], vehicle_id: $data['vehicle_id']);
+        return new static(fuelAmount: $data['fuel_amount'], vehicle_id: $data['vehicle_id']);
     }
 
 
