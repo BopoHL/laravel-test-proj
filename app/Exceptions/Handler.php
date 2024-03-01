@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -17,6 +18,19 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+    public function render($request, Throwable $e)
+    {
+        $statusCode = $e instanceof HttpException
+            ? $e->getCode()
+            : 500;
+
+        return response()->json(['error' => [
+            'code' => $statusCode,
+            'message' => $e->getMessage(),
+        ],
+        ], $statusCode);
+    }
 
     /**
      * Register the exception handling callbacks for the application.
