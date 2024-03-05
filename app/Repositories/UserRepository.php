@@ -59,6 +59,7 @@ class UserRepository implements IUserRepository
         $user->surname = $userDTO->getSurname();
         $user->age = $userDTO->getAge();
         $user->email = $userDTO->getEmail();
+        $user->confirmed_email = 'Not confirmed';
 
         $user->save();
 

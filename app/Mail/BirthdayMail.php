@@ -22,7 +22,7 @@ class BirthdayMail extends Mailable
         //
     }
 
-    public function build()
+    public function build(): BirthdayMail
     {
         return $this->view('happy_birthday')->subject('test');
     }

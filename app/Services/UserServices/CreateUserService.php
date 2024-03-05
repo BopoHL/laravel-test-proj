@@ -19,6 +19,8 @@ class CreateUserService
         if ($userWithEmail !== null) {
             throw new BusinessException(__('messages.email_already_exist'));
         }
+
+
         return $this->repository->createUser($userDTO);
     }
 }
