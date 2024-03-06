@@ -15,6 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property int age
  * @property string email
  * @property string confirmed_email
+ * @property string password
  * @property Organization[] $organizations
  */
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\FuelSensorController;
 use App\Http\Controllers\OrganizationController;
@@ -24,40 +25,45 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/confirm-email/{token}', [ConfirmationController::class, 'confirmEmail'])->name('confirm.email');
-
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{user_id}', [UserController::class, 'show']);
-Route::delete('/users/{user_id}', [UserController::class, 'destroy']);
+Route::post('/login', [AuthController::class, 'login']);
 Route::post('/users', [UserController::class, 'store']);
-Route::match(['put', 'patch'], '/users/{user_id}', [UserController::class, 'update']);
 
-Route::get('/organizations/{organization_id}/users', [UserController::class, 'getOrganizationUsers']);
-Route::get('/organizations/{organization_id}/users/{user_id}', [UserController::class, 'getOrganizationUser']);
 
-Route::get('/organizations', [OrganizationController::class, 'index']);
-Route::get('/organizations/{organization_id}', [OrganizationController::class, 'show']);
-Route::delete('/organizations/{organization_id}', [OrganizationController::class, 'destroy']);
-Route::post('/organizations', [OrganizationController::class, 'store']);
-Route::match(['put', 'patch'], '/organizations/{organization_id}', [OrganizationController::class,
-    'update']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{user_id}', [UserController::class, 'show']);
+    Route::delete('/users/{user_id}', [UserController::class, 'destroy']);
+    Route::match(['put', 'patch'], '/users/{user_id}', [UserController::class, 'update']);
 
-Route::get('/users/{user_id}/organizations', [OrganizationController::class, 'getUserOrganizations']);
-Route::get('/users/{user_id}/organizations/{organization_id}', [OrganizationController::class, 'getUserOrganization']);
+    Route::get('/organizations/{organization_id}/users', [UserController::class, 'getOrganizationUsers']);
+    Route::get('/organizations/{organization_id}/users/{user_id}', [UserController::class, 'getOrganizationUser']);
 
-Route::get('/vehicles', [VehicleController::class, 'index']);
-Route::get('/vehicles/{vehicle_id}', [VehicleController::class, 'show']);
-Route::delete('/vehicles/{vehicle_id}', [VehicleController::class, 'destroy']);
-Route::post('/vehicles', [VehicleController::class, 'store']);
-Route::match(['put', 'patch'], '/vehicles/{vehicle_id}', [VehicleController::class, 'update']);
+    Route::get('/organizations', [OrganizationController::class, 'index']);
+    Route::get('/organizations/{organization_id}', [OrganizationController::class, 'show']);
+    Route::delete('/organizations/{organization_id}', [OrganizationController::class, 'destroy']);
+    Route::post('/organizations', [OrganizationController::class, 'store']);
+    Route::match(['put', 'patch'], '/organizations/{organization_id}', [OrganizationController::class,
+        'update']);
 
-Route::get('/organizations/{organization_id}/vehicles', [VehicleController::class, 'getOrganizationVehicles']);
-Route::get('/organizations/{organization_id}/vehicles/{vehicle_id}', [VehicleController::class, 'getOrganizationVehicle']);
+    Route::get('/users/{user_id}/organizations', [OrganizationController::class, 'getUserOrganizations']);
+    Route::get('/users/{user_id}/organizations/{organization_id}', [OrganizationController::class, 'getUserOrganization']);
 
-Route::get('/fuelsensors', [FuelSensorController::class, 'index']);
-Route::get('/fuelsensors/{fuelsensor_id}', [FuelSensorController::class, 'show']);
-Route::delete('/fuelsensors/{fuelsensor_id}', [FuelSensorController::class, 'destroy']);
-Route::post('/fuelsensors', [FuelSensorController::class, 'store']);
-Route::match(['put', 'patch'], '/fuelsensors/{fuelsensor_id}', [FuelSensorController::class, 'update']);
+    Route::get('/vehicles', [VehicleController::class, 'index']);
+    Route::get('/vehicles/{vehicle_id}', [VehicleController::class, 'show']);
+    Route::delete('/vehicles/{vehicle_id}', [VehicleController::class, 'destroy']);
+    Route::post('/vehicles', [VehicleController::class, 'store']);
+    Route::match(['put', 'patch'], '/vehicles/{vehicle_id}', [VehicleController::class, 'update']);
 
-Route::get('/vehicles/{vehicle_id}/fuelsensors', [FuelSensorController::class, 'getVehicleFuelSensors']);
-Route::get('/vehicles/{vehicle_id}/fuelsensors/{fuelsensor_id}', [FuelSensorController::class, 'getVehicleFuelSensor']);
+    Route::get('/organizations/{organization_id}/vehicles', [VehicleController::class, 'getOrganizationVehicles']);
+    Route::get('/organizations/{organization_id}/vehicles/{vehicle_id}', [VehicleController::class, 'getOrganizationVehicle']);
+
+    Route::get('/fuelsensors', [FuelSensorController::class, 'index']);
+    Route::get('/fuelsensors/{fuelsensor_id}', [FuelSensorController::class, 'show']);
+    Route::delete('/fuelsensors/{fuelsensor_id}', [FuelSensorController::class, 'destroy']);
+    Route::post('/fuelsensors', [FuelSensorController::class, 'store']);
+    Route::match(['put', 'patch'], '/fuelsensors/{fuelsensor_id}', [FuelSensorController::class, 'update']);
+
+    Route::get('/vehicles/{vehicle_id}/fuelsensors', [FuelSensorController::class, 'getVehicleFuelSensors']);
+    Route::get('/vehicles/{vehicle_id}/fuelsensors/{fuelsensor_id}', [FuelSensorController::class, 'getVehicleFuelSensor']);
+
+});

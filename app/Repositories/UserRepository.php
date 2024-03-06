@@ -60,6 +60,8 @@ class UserRepository implements IUserRepository
         $user->age = $userDTO->getAge();
         $user->email = $userDTO->getEmail();
         $user->confirmed_email = 'Not confirmed';
+        $password = bcrypt($userDTO->getPassword());
+        $user->password = $password;
 
         $user->save();
 

@@ -9,4 +9,5 @@ return [
     'something_went_wrong' => 'Что-то пошло не так =(',
     'delete_successful' => 'Удаление успешно',
     'happy_birthday' => 'С Днем Рождения!!!',
+    'auth_fail' => 'Авторизация не выполнена',
 ];

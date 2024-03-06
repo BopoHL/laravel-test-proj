@@ -9,4 +9,5 @@ return [
     'something_went_wrong' => 'Something went wrong =(',
     'delete_successful' => 'Delete successful',
     'happy_birthday' => 'Happy Birthday!!!',
+    'auth_fail' => 'Authorization failed',
 ];

@@ -9,6 +9,7 @@ class UserDTO
         private string $surname,
         private string $email,
         private int    $age,
+        private string $password,
     )
     {
     }
@@ -40,6 +41,12 @@ class UserDTO
             surname: $data['surname'],
             email: $data['email'],
             age: $data['age'],
+            password: $data['password'],
         );
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 }
