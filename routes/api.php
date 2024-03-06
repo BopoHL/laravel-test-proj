@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\FuelSensorController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\UserController;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+
+Route::get('/confirm-email/{token}', [ConfirmationController::class, 'confirmEmail'])->name('confirm.email');
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user_id}', [UserController::class, 'show']);
